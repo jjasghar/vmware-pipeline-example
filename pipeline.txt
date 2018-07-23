@@ -1,0 +1,17 @@
+@startuml
+actor Workstation
+group Early in the development cycle
+"Workstation" -> "Local Container" : kitchen-dokken
+"Local Container" --> "Workstation" : Local Container
+"Workstation" -> "Remote Container" : kitchen-docker
+"Remote Container" --> Workstation : Remote Container
+end
+group Late in the development cycle
+"Workstation" -> "Test" : kitchen-vagrant
+"Test" --> "Workstation" : Local Virtual Machine
+"Workstation" -> "Staging" : kitchen-vcenter or kitchen-vra
+"Workstation" <-- "Staging" : Remote Virtual Machine
+"Workstation" -> Production : knife-vsphere/knife-vcenter
+"Workstation" <-- "Production" : Remote Virtual Machine (Persistent and attached to a Chef Server)
+end
+@enduml

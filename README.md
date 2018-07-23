@@ -1,43 +1,65 @@
 # vmware-pipeline-example
 
-TODO: Enter one line description of the cookbook here.
+A simple cookbook to drop in a VMware's infrastructure to demo a Cookbook development pipeline.
 
 ## SCOPE
 
-TODO: Enter a description of the scope of this cookbook, if you
-need an example the [mysql](https://github.com/chef-cookbooks/mysql) cookbook
-is a good place to start.
+An example cookbook to get a full VMware ecosystem "pipeline" put together.
 
-## Requirements
+## Suggested Pre-requirements
 
-TODO: Enter any requirements for the coobook.
+### PhotonOS
 
-## Dependancies
+- Install Photon OS 2.0 the instructions are [here][https://github.com/vmware/photon/wiki/Running-Photon-OS-on-vSphere].
+- Enable remote Docker connections on above Photon instance, instructions are [here][https://jjasghar.github.io/blog/2017/03/29/photonos-as-your-backend-for-kitchen-docker/].
+- NOTE: You probably want to turn this into a template after setting the password and turning on remote docker access.
 
-TODO: Enter any other cookbooks or ruby libraries for this cookbook.
+### Docker (dokken)
+
+- Install Docker on your local machine
+
+### Vagrant
+
+- Install Vagrant on your local machine
+
+### vCenter
+
+- Have access to a vCenter instance where a user has at least these permissions:
+
+* Datastore
+    * Allocate space :ballot_box_with_check:
+    * Browse datastore :ballot_box_with_check:
+* Host
+    * Local Operations
+         * Create virtual machine :ballot_box_with_check:
+         * Delete virtual machine :ballot_box_with_check:
+         * Manage user groups :ballot_box_with_check:
+         * Reconfigure virtual machine :ballot_box_with_check:
+ * Network
+    * Assign Network :ballot_box_with_check:
+ * Resource
+    * Assign virtual machine to resource pool :ballot_box_with_check:
+ * Virtual Machine :ballot_box_with_check:
 
 ## Usage
 
-TODO: Enter specific useage instructions for this cookbook.
+To demo a pipeline using the VMware's ecosystem.
+
+![](./pipeline.png)
+
 
 ## Testing
 
 For more details look at the [TESTING.md](./TESTING.md).
 
-TODO: Enter any specific instructions for Testing this cookbook.
-
-## Resources
-
-TODO: Document any [Custom Resources](https://docs.chef.io/custom_resources.html) that this cookbook may provide.
-
 ## License & Authors
 
 If you would like to see the detailed LICENCE click [here](./LICENCE).
 
-- Author:: The Authors <you@example.com>
+- Author:: JJ Asghar <jj@chef.io>
 
 ```text
-Copyright:: The Authors
+Copyright:: JJ Asghar
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

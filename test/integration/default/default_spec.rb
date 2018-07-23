@@ -11,13 +11,24 @@ describe port(80) do
   it { should_not be_listening }
 end
 
-describe port(443) do
-  it { should be_listening }
-  its('protocols') { should include 'tcp' }
+if os[:family] == 'debian'
+  describe file('/usr/bin/vim') do
+    it { should exist }
+    it { should be_symlink }
+  end
+elsif os[:family] == 'redhat'
+  describe file('/usr/bin/vim') do
+    it { should exist }
+    it { should_not be_symlink }
+  end
 end
 
-describe sshd_config do
-  its('Ciphers') { should eq('chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr') }
+describe port(8080) do
+  it { should_not be_listening }
+end
+
+describe port(80) do
+  it { should_not be_listening }
 end
 
 describe yaml('.kitchen.yml') do

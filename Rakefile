@@ -33,7 +33,7 @@ RSpec::Core::RakeTask.new(:spec)
 
 # Integration tests. Kitchen.ci
 namespace :integration do
-  desc 'Run Test Kitchen with Vagrant'
+  desc 'Run Test Kitchen with Vagrant (local)'
   task :vagrant do
     Kitchen.logger = Kitchen.default_file_logger
     Kitchen::Config.new.instances.each do |instance|
@@ -41,26 +41,39 @@ namespace :integration do
     end
   end
 
-  desc 'Run Test Kitchen with cloud plugins'
-  task :cloud do
-    run_kitchen = true
-    if ENV['TRAVIS'] == 'true' && ENV['TRAVIS_PULL_REQUEST'] != 'false'
-      run_kitchen = false
+  desc 'Run Test Kitchen with Docker (remote)'
+  task :docker do
+    Kitchen.logger = Kitchen.default_file_logger
+    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.docker.yml')
+    config = Kitchen::Config.new(loader: @loader)
+    config.instances.each do |instance|
+      instance.test(:always)
     end
+  end
 
-    if run_kitchen
-      Kitchen.logger = Kitchen.default_file_logger
-      @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.cloud.yml')
-      config = Kitchen::Config.new(loader: @loader)
-      config.instances.each do |instance|
-        instance.test(:always)
-      end
+  desc 'Run Test Kitchen with Dokken (local)'
+  task :dokken do
+    Kitchen.logger = Kitchen.default_file_logger
+    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.dokken.yml')
+    config = Kitchen::Config.new(loader: @loader)
+    config.instances.each do |instance|
+      instance.test(:always)
+    end
+  end
+
+  desc 'Run Test Kitchen with vCenter (remote)'
+  task :vcenter do
+    Kitchen.logger = Kitchen.default_file_logger
+    @loader = Kitchen::Loader::YAML.new(project_config: './.kitchen.vcenter.yml')
+    config = Kitchen::Config.new(loader: @loader)
+    config.instances.each do |instance|
+      instance.test(:always)
     end
   end
 end
 
-desc 'Run all tests on Travis'
-task travis: ['style', 'spec'] # rubocop:disable all
+desc 'Run all integration tests'
+task integration: [ 'integration:dokken', 'integration:vagrant', 'integration:docker', 'integration:vcenter'] # rubocop:disable all
 
 # Default # rubocop:enable all
-task default: ['style', 'spec', 'integration:vagrant']
+task default: ['style', 'spec', 'integration:dokken', 'integration:vagrant', 'integration:docker']
