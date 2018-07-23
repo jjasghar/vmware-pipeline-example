@@ -73,7 +73,6 @@ namespace :integration do
 end
 
 desc 'Run all integration tests'
-task integration: [ 'integration:dokken', 'integration:vagrant', 'integration:docker', 'integration:vcenter'] # rubocop:disable all
+task integration: [ 'integration:dokken', 'integration:vagrant', 'integration:docker', 'integration:vcenter']
 
-# Default # rubocop:enable all
 task default: ['style', 'spec', 'integration:dokken', 'integration:vagrant', 'integration:docker']

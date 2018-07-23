@@ -10,8 +10,8 @@ An example cookbook to get a full VMware ecosystem "pipeline" put together.
 
 ### PhotonOS
 
-- Install Photon OS 2.0 the instructions are [here][https://github.com/vmware/photon/wiki/Running-Photon-OS-on-vSphere].
-- Enable remote Docker connections on above Photon instance, instructions are [here][https://jjasghar.github.io/blog/2017/03/29/photonos-as-your-backend-for-kitchen-docker/].
+- Install Photon OS 2.0 the instructions are [here](https://github.com/vmware/photon/wiki/Running-Photon-OS-on-vSphere).
+- Enable remote Docker connections on above Photon instance, instructions are [here](https://jjasghar.github.io/blog/2017/03/29/photonos-as-your-backend-for-kitchen-docker/).
 - NOTE: You probably want to turn this into a template after setting the password and turning on remote docker access.
 
 ### Docker (dokken)

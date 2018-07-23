@@ -8,6 +8,8 @@ gem 'kitchen-inspec'
 gem 'kitchen-vagrant'
 gem 'kitchen-vcenter'
 gem 'test-kitchen'
+gem 'knife-vcenter'
+gem 'knife-vsphere'
 
 group :development do
   gem 'chefspec'
