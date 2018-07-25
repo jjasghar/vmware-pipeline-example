@@ -1,6 +1,7 @@
 # vmware-pipeline-example
 
-A simple cookbook to drop in a VMware's infrastructure to demo a Cookbook development pipeline.
+A simple cookbook to drop in a VMware's infrastructure to demo a Cookbook development pipeline, I have an explanation of
+this cookbook [here](http://jjasghar.github.io/blog/2018/07/24/cookbook-development-with-a-pure-vmware-stack/).
 
 ## SCOPE
 
