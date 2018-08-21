@@ -15,14 +15,14 @@ verifier:
 
 
 platforms:
-  - name: ubuntu-1604
-    transport:
-      username: "admini"
-      password: admini
-    driver_config:
-      targethost: 172.16.20.43
-      template: ubuntu16-tmpl
-      datacenter: "Datacenter"
+  # - name: ubuntu-1604
+  #   transport:
+  #     username: "admini"
+  #     password: admini
+  #   driver_config:
+  #     targethost: 172.16.20.43
+  #     template: ubuntu16-tmpl
+  #     datacenter: "Datacenter"
 
   - name: centos-7
     transport:
